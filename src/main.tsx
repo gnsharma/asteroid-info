@@ -5,7 +5,6 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { AuthProvider } from "@/auth";
 import routes from "@/routes";
 import theme from "@/theme";
 
@@ -20,9 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<AuthProvider>
-					<RouterProvider router={router} />
-				</AuthProvider>
+				<RouterProvider router={router} />
 			</ThemeProvider>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>

@@ -1,36 +1,22 @@
 import * as React from "react";
-import {
-	Typography,
-	Link as MuiLink,
-	Box,
-	useTheme,
-	useMediaQuery,
-} from "@mui/material";
-
-import {
-	useNavigate,
-	useLocation,
-	Navigate,
-	useParams,
-} from "react-router-dom";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 
 import {
 	Avatar,
 	Container,
 	Paper,
-	Unstable_Grid2 as GridV2,
-	AppBar as MuiAppBar,
-	Toolbar,
-	styled,
+	Typography,
+	Box,
+	useTheme,
+	useMediaQuery,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { SearchOutlined } from "@mui/icons-material";
 
 import { useZodForm, Form, Input } from "@components/forms";
-import { useAsteroidInfo, useAsteroidSearch } from "@common/hooks/api";
-//
+import { useBrowseAsteroids } from "@common/hooks/api";
 
 const loginFormschema = z.object({
 	id: z.string({
@@ -40,29 +26,23 @@ const loginFormschema = z.object({
 
 export type LoginFormValues = z.infer<typeof loginFormschema>;
 
-const LoginForm = () => {
+const AsteriodForm = () => {
 	const navigate = useNavigate();
 	const form = useZodForm({
 		schema: loginFormschema,
 	});
 
-	const { data: info } = useAsteroidInfo({
-		enabled: Boolean(form.getValues("id")),
-	});
-
-	const { data: list } = useAsteroidSearch();
-
-	const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
-		navigate(data.id);
-	};
+	const { data: list } = useBrowseAsteroids();
 
 	const onRandomClick = () => {
 		const asteroids = list?.near_earth_objects ?? [];
 		const total = asteroids.length;
 		const index = Math.floor(Math.random() * total);
-		console.log("index", index);
-		console.log("abc", asteroids[index].id, index);
 		navigate(asteroids[index].id);
+	};
+
+	const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+		navigate(data.id);
 	};
 
 	return (
@@ -134,7 +114,6 @@ const App = () => {
 			flexWrap={isNotBigScreen ? "wrap" : "nowrap"}
 			pt={isNotBigScreen ? 39 : 0}
 		>
-			{/* <NavBar /> */}
 			<main
 				style={{
 					flexGrow: 1,
@@ -142,7 +121,7 @@ const App = () => {
 					maxWidth: "100vw",
 				}}
 			>
-				<LoginForm />
+				<AsteriodForm />
 			</main>
 		</Box>
 	);

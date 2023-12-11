@@ -1,3 +1,3 @@
-import Login from "./login.component";
+import Asteroid from "./asteroid.component";
 
-export default Login;
+export default Asteroid;

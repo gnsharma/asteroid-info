@@ -27,7 +27,6 @@ const themeVariables = {
 const defaultMuiTheme = createTheme();
 
 const commonTypography = {
-	fontFamily: '"DM Sans", "DM Serif Text", "Poppins", sans-serif',
 	fontWeight: 500,
 	lineHeight: 1.37,
 };
@@ -63,7 +62,6 @@ let theme = createTheme(defaultMuiTheme, {
 	},
 	spacing: (factor) => `${0.125 * factor}rem`,
 	typography: {
-		fontFamily: '"DM Sans", "DM Serif Text", "Poppins", sans-serif',
 		fontSize: "0.9375rem",
 		h1: {
 			fontSize: "1.6625rem",
@@ -91,11 +89,9 @@ let theme = createTheme(defaultMuiTheme, {
 		},
 		body1: {
 			fontSize: "0.9375rem",
-			fontFamily: '"DM Sans", "DM Serif Text", "Poppins", sans-serif',
 		},
 		caption: {
 			fontSize: "0.8125rem",
-			fontFamily: '"DM Sans", "DM Serif Text", "Poppins", sans-serif',
 		},
 		formLabel: {
 			fontSize: "0.875rem",

@@ -1,6 +1,6 @@
-import { Route, createRoutesFromElements, Navigate } from "react-router-dom";
+import { Route, createRoutesFromElements } from "react-router-dom";
 
-import { ErrorPage, RequireAuth } from "@components/molecules";
+import { ErrorPage } from "@components/molecules";
 
 import Asteroid from "@pages/asteroid";
 import App from "@pages/app.component";
